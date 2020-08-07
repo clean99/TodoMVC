@@ -2,11 +2,12 @@ import React,{ useState,useEffect } from "react";
 import List from "./List"
 import Submit from "./Submit"
 import Showcase from "./Showcase"
-import noteService from './services/notes'
-function App() {
+import noteService from '../services/notes'
+function App({user}) {
   const [notes,setnotes] = useState([]);//管理已有的notes
   const [changes,setchanges] = useState('a new note');//监听input中的note
   const [show,setShow] = useState(true);//管理显示的条目
+
   const hook = ()=>{
     noteService
     .getAll()
@@ -37,6 +38,7 @@ function App() {
   const switchshow = ()=>{
     setShow(!show);
   }//反转show
+  
   const handleonchange = (event)=>{
     setchanges(event.target.value);
   }
@@ -58,6 +60,8 @@ function App() {
   
   return (
     <div className="App">
+      <h1>Notes</h1>
+      <p>{user.name} logged-in</p>
       <List notes={showcase(notes)} handlecheckbox={handlecheckbox} />
       <Submit handleonchange={handleonchange} handlesavebutton={handlesavebutton} />
       <Showcase switchshow={switchshow}/>
