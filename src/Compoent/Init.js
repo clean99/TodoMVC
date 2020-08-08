@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import App from './App'
 import Login from './Login'
+import Togglable from './Togglable'
 import Services from '../services/notes'
 const Init = ()=>{
     const [username,setUsername] = useState('');
@@ -33,7 +34,15 @@ const Init = ()=>{
     },[])
     return (
         <div>
-            {user === null?<Login username={username} password={password} setUsername={setUsername} setPassword={setPassword} handlelogin={handlelogin}/>:<App user={user}/>}
+            <App user={user}/>
+            <Togglable buttonlabel='login'>
+            <Login 
+            username={username} 
+            password={password} 
+            setUsername={setUsername} 
+            setPassword={setPassword} 
+            handlelogin={handlelogin}/>
+            </Togglable>
         </div>
     )
 }
