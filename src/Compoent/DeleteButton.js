@@ -1,9 +1,17 @@
 import React from 'react'
-const DeleteButton = ({note,setNote})=>{
-    
-    return (
-        <input type='button' onClick={handleonclick}>
+import Services from '../services/notes'
+const DeleteButton = ({ handledeletebutton }) => {
+  const handleonclick = () => {
+    Services.deletenote()
+      .then(( event ) => {
+        console.log(event)
+        handledeletebutton()
+      })
+  }
+  return (
+    <input type='button' onClick={handleonclick}>
             删除已完成
-        </input>
-    )
+    </input>
+  )
 }
+export default DeleteButton
